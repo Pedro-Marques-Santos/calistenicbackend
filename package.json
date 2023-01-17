@@ -1,0 +1,26 @@
+{
+  "name": "calistenicbackend",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "dev": "ts-node-dev ./src/server.ts",
+    "build": "tsc"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.48.2",
+    "babel-eslint": "^10.1.0",
+    "eslint": "^8.32.0",
+    "eslint-config-prettier": "^8.6.0",
+    "eslint-config-standard-with-typescript": "^30.0.0",
+    "eslint-plugin-import": "^2.27.5",
+    "eslint-plugin-n": "^15.6.1",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-promise": "^6.1.1",
+    "prettier": "^2.8.3",
+    "typescript": "^4.9.4"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
