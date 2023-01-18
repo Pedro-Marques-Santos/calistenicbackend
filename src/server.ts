@@ -1,7 +1,14 @@
-import express from 'express'
+import "reflect-metadata";
+import "./shared/index";
+import express from "express";
+import { router } from "./routes";
 
 const app = express();
 
-app.listen(3000, () => {
-  console.log('Server is running ok!');
+app.use(express.json());
+
+app.use(router);
+
+app.listen(3333, () => {
+  console.log("Server is running!");
 });
