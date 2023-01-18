@@ -9,8 +9,14 @@ class CreateUserUseCase {
     private userRepository: IUserRepository
   ) {}
 
-  execute({ name, password, email }: IUserCreateDTO): void {
-    this.userRepository.create({ name, password, email });
+  async execute({ name, password, email }: IUserCreateDTO): Promise<void> {
+    const exist = this.userRepository.findByEmail(email);
+
+    if (exist === true) {
+      throw new Error("Email already registered!");
+    }
+
+    await this.userRepository.create({ name, password, email });
   }
 }
 

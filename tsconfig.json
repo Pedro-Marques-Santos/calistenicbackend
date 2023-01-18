@@ -7,7 +7,7 @@
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "skipLibCheck": true,
-    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
     "outDir": "./dist"
   }
 }

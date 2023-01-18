@@ -1,9 +1,10 @@
 import { IUserCreateDTO } from "../dtos";
-import { User } from "../model/User";
+import { User } from "../entities/User";
 
 interface IUserRepository {
-  create({ name, email, password }: IUserCreateDTO): void;
+  create({ name, email, password }: IUserCreateDTO): Promise<void>;
   list(): User[];
+  findByEmail(email: string): boolean;
 }
 
 export { IUserRepository };
