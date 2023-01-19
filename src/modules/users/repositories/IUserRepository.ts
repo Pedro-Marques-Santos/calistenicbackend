@@ -3,8 +3,8 @@ import { User } from "../entities/User";
 
 interface IUserRepository {
   create({ name, email, password }: IUserCreateDTO): Promise<void>;
-  list(): User[];
-  findByEmail(email: string): boolean;
+  list(): Promise<User[]>;
+  findByEmail(email: string): Promise<boolean>;
 }
 
 export { IUserRepository };

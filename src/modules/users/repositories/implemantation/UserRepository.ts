@@ -13,9 +13,10 @@ class UserRepository implements IUserRepository {
     this.allPessoas = [];
   }
 
-  findByEmail(email: string): boolean {
+  async findByEmail(email: string): Promise<boolean> {
     let existUser = false;
-    this.allPessoas.map((user) => {
+    let listUser = await this.userRepository.find();
+    listUser.map((user) => {
       if (user.email === email) {
         existUser = true;
       }
@@ -23,8 +24,10 @@ class UserRepository implements IUserRepository {
     return existUser;
   }
 
-  list(): User[] {
-    return this.allPessoas;
+  async list(): Promise<User[]> {
+    const list = await this.userRepository.find();
+
+    return list;
   }
 
   async create({ name, email, password }: IUserCreateDTO): Promise<void> {

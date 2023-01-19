@@ -9,7 +9,7 @@ class ListUserUseCase {
     private userRepository: IUserRepository
   ) {}
 
-  execute(): User[] {
+  async execute(): Promise<User[]> {
     let users = this.userRepository.list();
     return users;
   }

@@ -10,7 +10,7 @@ class CreateUserUseCase {
   ) {}
 
   async execute({ name, password, email }: IUserCreateDTO): Promise<void> {
-    const exist = this.userRepository.findByEmail(email);
+    const exist = await this.userRepository.findByEmail(email);
 
     if (exist === true) {
       throw new Error("Email already registered!");
