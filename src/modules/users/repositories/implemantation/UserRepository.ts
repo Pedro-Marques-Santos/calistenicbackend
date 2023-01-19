@@ -6,11 +6,9 @@ import { getRepository, Repository } from "typeorm";
 
 class UserRepository implements IUserRepository {
   private userRepository: Repository<User>;
-  private allPessoas: User[] = [];
 
   constructor() {
     this.userRepository = getRepository(User);
-    this.allPessoas = [];
   }
 
   async findByEmail(email: string): Promise<boolean> {

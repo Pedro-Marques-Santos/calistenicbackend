@@ -1,4 +1,5 @@
 import { inject, injectable } from "tsyringe";
+import { AppError } from "../../../../errors/AppErrors";
 import { IUserCreateDTO } from "../../dtos";
 import { IUserRepository } from "../../repositories/IUserRepository";
 
@@ -13,7 +14,7 @@ class CreateUserUseCase {
     const exist = await this.userRepository.findByEmail(email);
 
     if (exist === true) {
-      throw new Error("Email already registered!");
+      throw new AppError("Email already registered!", 401);
     }
 
     await this.userRepository.create({ name, password, email });
