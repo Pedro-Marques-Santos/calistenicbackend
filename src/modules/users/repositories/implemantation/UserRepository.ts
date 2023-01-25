@@ -1,4 +1,4 @@
-import { IUserCreateDTO, IUserLogin } from "../../dtos";
+import { ICreateUserLogin, IUserCreateDTO, IUserLogin } from "../../dtos";
 import { User } from "../../entities/User";
 import { IUserRepository } from "../IUserRepository";
 
@@ -11,7 +11,7 @@ class UserRepository implements IUserRepository {
     this.userRepository = getRepository(User);
   }
 
-  async login(email: string, password): Promise<IUserLogin> {
+  async login(email: string, password: string): Promise<IUserLogin> {
     let login = {
       verifyLogin: false,
     } as IUserLogin;
@@ -49,7 +49,11 @@ class UserRepository implements IUserRepository {
     return list;
   }
 
-  async create({ name, email, password }: IUserCreateDTO): Promise<void> {
+  async create({
+    name,
+    email,
+    password,
+  }: IUserCreateDTO): Promise<ICreateUserLogin> {
     const user = this.userRepository.create({
       name,
       email,
@@ -57,6 +61,8 @@ class UserRepository implements IUserRepository {
     });
 
     await this.userRepository.save(user);
+
+    return user;
   }
 }
 

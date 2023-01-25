@@ -1,6 +1,6 @@
 import { inject, injectable } from "tsyringe";
 import { AppError } from "../../../../errors/AppErrors";
-import { IUserLogin, IUserToken } from "../../dtos";
+import { IUserToken } from "../../dtos";
 import { IUserRepository } from "../../repositories/IUserRepository";
 
 import jwt from "jsonwebtoken";
@@ -16,7 +16,7 @@ class LoginUserUseCase {
     const exist = await this.userRepository.findByEmail(email);
 
     if (exist === false) {
-      throw new AppError("email does not exist!", 401);
+      throw new AppError("Unregistered email!", 401);
     }
 
     const user = await this.userRepository.login(email, password);

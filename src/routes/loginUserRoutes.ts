@@ -5,7 +5,7 @@ const loginUserRoutes = Router();
 
 const loginUserController = new LoginUserController();
 
-loginUserRoutes.get("/", (request, respose) => {
+loginUserRoutes.post("/", (request, respose) => {
   return loginUserController.handle(request, respose);
 });
 
