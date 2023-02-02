@@ -27,10 +27,22 @@ interface IUserToken {
   token: string;
 }
 
+interface IProfileUserDTO {
+  userExistToken: boolean;
+  name: string;
+}
+
+interface ITokenData {
+  password: string;
+  email: string;
+}
+
 export {
   IUserCreateDTO,
   IUserLogin,
   IUserToken,
   ICreateUserLogin,
   ICreateUserToken,
+  IProfileUserDTO,
+  ITokenData,
 };

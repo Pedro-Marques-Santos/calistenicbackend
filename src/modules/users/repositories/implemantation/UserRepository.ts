@@ -1,6 +1,14 @@
-import { ICreateUserLogin, IUserCreateDTO, IUserLogin } from "../../dtos";
+import {
+  ICreateUserLogin,
+  IProfileUserDTO,
+  ITokenData,
+  IUserCreateDTO,
+  IUserLogin,
+} from "../../dtos";
 import { User } from "../../entities/User";
 import { IUserRepository } from "../IUserRepository";
+
+import jwt from "jsonwebtoken";
 
 import { getRepository, Repository } from "typeorm";
 
@@ -9,6 +17,30 @@ class UserRepository implements IUserRepository {
 
   constructor() {
     this.userRepository = getRepository(User);
+  }
+
+  async profileUser(token: string): Promise<IProfileUserDTO> {
+    let userProfile = {
+      userExistToken: false,
+    } as IProfileUserDTO;
+
+    let tokenData = jwt.decode(token) as ITokenData;
+
+    let allUser = await this.userRepository.find();
+
+    allUser.map((user) => {
+      if (
+        user.email === tokenData.email &&
+        user.password === tokenData.password
+      ) {
+        userProfile = {
+          userExistToken: true,
+          name: user.name,
+        };
+      }
+    });
+
+    return userProfile;
   }
 
   async login(email: string, password: string): Promise<IUserLogin> {
