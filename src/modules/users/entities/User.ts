@@ -16,9 +16,16 @@ class User {
   @Column()
   password: string;
 
+  @Column()
+  motivation: string;
+
   constructor() {
     if (!this.id) {
       this.id = uuidV4();
+    }
+    if (!this.motivation) {
+      this.motivation =
+        "Digite um texto motivacional para demonstrar os seus motivos na calistenia";
     }
   }
 }

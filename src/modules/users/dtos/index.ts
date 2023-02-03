@@ -30,6 +30,7 @@ interface IUserToken {
 interface IProfileUserDTO {
   userExistToken: boolean;
   name: string;
+  motivation: string;
 }
 
 interface ITokenData {

@@ -36,6 +36,7 @@ class UserRepository implements IUserRepository {
         userProfile = {
           userExistToken: true,
           name: user.name,
+          motivation: user.motivation,
         };
       }
     });
