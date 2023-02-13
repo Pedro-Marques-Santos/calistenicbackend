@@ -19,8 +19,6 @@ class FindExerciseUseCase {
       throw new AppError("Exercise does not exist!", 401);
     }
 
-    console.log(findexercise);
-
     return findexercise;
   }
 }

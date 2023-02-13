@@ -25,7 +25,7 @@ class User {
     }
     if (!this.motivation) {
       this.motivation =
-        "Digite um texto motivacional para demonstrar os seus motivos na calistenia";
+        "Digite um texto motivacional para demonstrar os seus objetivos na calistenia";
     }
   }
 }

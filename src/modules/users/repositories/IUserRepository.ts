@@ -12,6 +12,7 @@ interface IUserRepository {
   findByEmail(email: string): Promise<boolean>;
   login(email: string, password: string): Promise<IUserLogin>;
   profileUser(token: string): Promise<IProfileUserDTO>;
+  changeMotivation(id: string, motivation: string): Promise<void>;
 }
 
 export { IUserRepository };

@@ -19,6 +19,16 @@ class UserRepository implements IUserRepository {
     this.userRepository = getRepository(User);
   }
 
+  async changeMotivation(id: string, motivation: string): Promise<void> {
+    const user = await this.userRepository.findOne({
+      id: id,
+    });
+
+    user.motivation = motivation;
+
+    await this.userRepository.save(user);
+  }
+
   async profileUser(token: string): Promise<IProfileUserDTO> {
     let userProfile = {
       userExistToken: false,
@@ -37,6 +47,7 @@ class UserRepository implements IUserRepository {
           userExistToken: true,
           name: user.name,
           motivation: user.motivation,
+          id: user.id,
         };
       }
     });

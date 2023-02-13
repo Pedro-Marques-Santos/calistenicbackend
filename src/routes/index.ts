@@ -1,4 +1,5 @@
 import { Router } from "express";
+import { changeMotivationRoutes } from "./changeMotivationRoutes";
 import { createExerciseRoutes } from "./createExerciseRoutes";
 import { createUserRoutes } from "./createUserRoutes";
 import { findExerciseRoutes } from "./findExerciseRoutes";
@@ -14,5 +15,6 @@ router.use("/loginUser", loginUserRoutes);
 router.use("/createExercise", createExerciseRoutes);
 router.use("/findByExercise", findExerciseRoutes);
 router.use("/profileUser", profileUserRoutes);
+router.use("/changeMotivation", changeMotivationRoutes);
 
 export { router };
