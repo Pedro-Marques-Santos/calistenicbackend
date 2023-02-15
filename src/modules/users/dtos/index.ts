@@ -2,12 +2,15 @@ interface IUserCreateDTO {
   name: string;
   email: string;
   password: string;
+  id?: string;
+  avatar?: string;
 }
 
 interface IUserLogin {
   email: string;
   name: string;
   password: string;
+  id: string;
   verifyLogin: boolean;
 }
 

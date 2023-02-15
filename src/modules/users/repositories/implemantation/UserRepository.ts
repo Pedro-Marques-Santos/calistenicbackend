@@ -19,6 +19,14 @@ class UserRepository implements IUserRepository {
     this.userRepository = getRepository(User);
   }
 
+  async findUserById(id: string): Promise<User> {
+    const user = await this.userRepository.findOne({
+      id: id,
+    });
+
+    return user;
+  }
+
   async changeMotivation(id: string, motivation: string): Promise<void> {
     const user = await this.userRepository.findOne({
       id: id,
@@ -69,6 +77,7 @@ class UserRepository implements IUserRepository {
           email: user.email,
           password: user.password,
           name: user.name,
+          id: user.id,
         };
       }
     });
@@ -93,15 +102,20 @@ class UserRepository implements IUserRepository {
     return list;
   }
 
+  //o create ele cria e tmb edita, no caso quando estamos utilizando o avatar, pois já vem com o id e avatar
   async create({
     name,
     email,
     password,
+    id,
+    avatar,
   }: IUserCreateDTO): Promise<ICreateUserLogin> {
     const user = this.userRepository.create({
       name,
       email,
       password,
+      id,
+      avatar,
     });
 
     await this.userRepository.save(user);

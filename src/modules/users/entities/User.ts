@@ -19,6 +19,9 @@ class User {
   @Column()
   motivation: string;
 
+  @Column()
+  avatar: string;
+
   constructor() {
     if (!this.id) {
       this.id = uuidV4();

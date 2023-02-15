@@ -6,6 +6,7 @@ import { findExerciseRoutes } from "./findExerciseRoutes";
 import { listUserRoutes } from "./listUserRoutes";
 import { loginUserRoutes } from "./loginUserRoutes";
 import { profileUserRoutes } from "./profileUserRoutes";
+import { updateUserAvatarRoutes } from "./updateUserAvatarRoutes";
 
 const router = Router();
 
@@ -16,5 +17,6 @@ router.use("/createExercise", createExerciseRoutes);
 router.use("/findByExercise", findExerciseRoutes);
 router.use("/profileUser", profileUserRoutes);
 router.use("/changeMotivation", changeMotivationRoutes);
+router.use("/avatar", updateUserAvatarRoutes);
 
 export { router };

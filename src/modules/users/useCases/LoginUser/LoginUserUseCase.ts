@@ -35,7 +35,7 @@ class LoginUserUseCase {
       secretKey,
       {
         expiresIn: "2h",
-        subject: "1",
+        subject: user.id,
       }
     );
 
