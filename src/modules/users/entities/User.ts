@@ -20,7 +20,7 @@ class User {
   motivation: string;
 
   @Column()
-  avatar: string;
+  avatar?: string;
 
   constructor() {
     if (!this.id) {

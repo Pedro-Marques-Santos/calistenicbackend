@@ -30,13 +30,6 @@ interface IUserToken {
   token: string;
 }
 
-interface IProfileUserDTO {
-  userExistToken: boolean;
-  name: string;
-  motivation: string;
-  id: string;
-}
-
 interface ITokenData {
   password: string;
   email: string;
@@ -48,6 +41,5 @@ export {
   IUserToken,
   ICreateUserLogin,
   ICreateUserToken,
-  IProfileUserDTO,
   ITokenData,
 };

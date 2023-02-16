@@ -1,7 +1,12 @@
 import { inject, injectable } from "tsyringe";
 import { AppError } from "../../../../errors/AppErrors";
-import { IProfileUserDTO } from "../../dtos";
 import { IUserRepository } from "../../repositories/IUserRepository";
+
+interface IUserProfile {
+  motivation: string;
+  name: string;
+  avatar: string;
+}
 
 @injectable()
 class ProfileUserUseCase {
@@ -10,17 +15,20 @@ class ProfileUserUseCase {
     private userRepository: IUserRepository
   ) {}
 
-  async execute(token: string): Promise<IProfileUserDTO> {
-    let user = await this.userRepository.profileUser(token);
+  async execute({ user_id }): Promise<IUserProfile> {
+    let user = await this.userRepository.findUserById(user_id);
 
-    if (user.userExistToken === false) {
-      throw new AppError(
-        "Token foi expirado, você deve fazer login novamente!",
-        401
-      );
+    if (!user) {
+      throw new AppError("Usuário não existe!!", 401);
     }
 
-    return user;
+    let userProfile = {
+      motivation: user.motivation,
+      name: user.name,
+      avatar: user.avatar,
+    } as IUserProfile;
+
+    return userProfile;
   }
 }
 
