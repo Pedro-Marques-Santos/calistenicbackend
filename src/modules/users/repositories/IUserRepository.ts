@@ -6,8 +6,8 @@ interface IUserRepository {
   list(): Promise<User[]>;
   findByEmail(email: string): Promise<boolean>;
   login(email: string, password: string): Promise<IUserLogin>;
-  changeMotivation(id: string, motivation: string): Promise<void>;
   findUserById(id: string): Promise<User>;
+  changeMotivation(user: User, motivation: string): Promise<void>;
 }
 
 export { IUserRepository };

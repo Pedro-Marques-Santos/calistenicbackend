@@ -2,8 +2,6 @@ import { ICreateUserLogin, IUserCreateDTO, IUserLogin } from "../../dtos";
 import { User } from "../../entities/User";
 import { IUserRepository } from "../IUserRepository";
 
-import jwt from "jsonwebtoken";
-
 import { getRepository, Repository } from "typeorm";
 
 class UserRepository implements IUserRepository {
@@ -13,22 +11,18 @@ class UserRepository implements IUserRepository {
     this.userRepository = getRepository(User);
   }
 
+  async changeMotivation(user: User, motivation: string): Promise<void> {
+    user.motivation = motivation;
+
+    await this.userRepository.save(user);
+  }
+
   async findUserById(id: string): Promise<User> {
     const user = await this.userRepository.findOne({
       id: id,
     });
 
     return user;
-  }
-
-  async changeMotivation(id: string, motivation: string): Promise<void> {
-    const user = await this.userRepository.findOne({
-      id: id,
-    });
-
-    user.motivation = motivation;
-
-    await this.userRepository.save(user);
   }
 
   async login(email: string, password: string): Promise<IUserLogin> {

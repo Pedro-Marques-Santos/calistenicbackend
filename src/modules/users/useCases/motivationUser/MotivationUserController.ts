@@ -4,14 +4,15 @@ import { container } from "tsyringe";
 import { MotivationUserCase } from "./MotivationUserUseCase";
 
 class MotivationUserController {
-  handle(request: Request, respose: Response) {
-    const { id, motivation } = request.body;
+  async handle(request: Request, respose: Response) {
+    const { motivation } = request.body;
+    const { id: user_id } = request.user;
 
     const motivationUserUseCase = container.resolve(MotivationUserCase);
 
-    motivationUserUseCase.execute(id, motivation);
+    await motivationUserUseCase.execute(user_id, motivation);
 
-    return respose.status(201).send();
+    return respose.status(204).send();
   }
 }
 

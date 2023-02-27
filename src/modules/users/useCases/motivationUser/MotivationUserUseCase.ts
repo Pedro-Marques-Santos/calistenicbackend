@@ -8,8 +8,14 @@ class MotivationUserCase {
     private userRepository: IUserRepository
   ) {}
 
-  async execute(id: string, motivation: string): Promise<void> {
-    await this.userRepository.changeMotivation(id, motivation);
+  async execute(user_id: string, motivation: string): Promise<void> {
+    const user = await this.userRepository.findUserById(user_id);
+
+    if (!user) {
+      throw new Error("Usuário não existe!");
+    }
+
+    await this.userRepository.changeMotivation(user, motivation);
   }
 }
 

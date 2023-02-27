@@ -25,7 +25,9 @@ class CreateUserUseCase {
 
     const secretKey = "6392241ff0d34";
 
-    const user = await this.userRepository.create({ name, password, email });
+    await this.userRepository.create({ name, password, email });
+
+    const user = await this.userRepository.login(email, password);
 
     const token = jwt.sign(
       {
@@ -35,13 +37,12 @@ class CreateUserUseCase {
       secretKey,
       {
         expiresIn: "2h",
-        subject: "1",
+        subject: user.id,
       }
     );
 
     let createUserToken = {
       token: token,
-      name: user.name,
     } as ICreateUserToken;
 
     return createUserToken;

@@ -21,7 +21,6 @@ interface ICreateUserLogin {
 }
 
 interface ICreateUserToken {
-  name: string;
   token: string;
 }
 
