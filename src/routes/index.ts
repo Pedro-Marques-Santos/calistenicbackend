@@ -5,6 +5,7 @@ import { createUserRoutes } from "./createUserRoutes";
 import { findExerciseRoutes } from "./findExerciseRoutes";
 import { listUserRoutes } from "./listUserRoutes";
 import { loginUserRoutes } from "./loginUserRoutes";
+import { passwordRoutes } from "./passwordRoutes";
 import { profileUserRoutes } from "./profileUserRoutes";
 import { updateUserAvatarRoutes } from "./updateUserAvatarRoutes";
 
@@ -18,5 +19,6 @@ router.use("/findByExercise", findExerciseRoutes);
 router.use("/profileUser", profileUserRoutes);
 router.use("/changeMotivation", changeMotivationRoutes);
 router.use("/avatar", updateUserAvatarRoutes);
+router.use("/", passwordRoutes);
 
 export { router };

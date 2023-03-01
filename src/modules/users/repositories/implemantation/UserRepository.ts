@@ -3,12 +3,31 @@ import { User } from "../../entities/User";
 import { IUserRepository } from "../IUserRepository";
 
 import { getRepository, Repository } from "typeorm";
+import { verify } from "jsonwebtoken";
 
 class UserRepository implements IUserRepository {
   private userRepository: Repository<User>;
 
   constructor() {
     this.userRepository = getRepository(User);
+  }
+
+  async findByTokenUser(token: string, password: string): Promise<User> {
+    const tokenElements = verify(token, "6392241ff0d34");
+
+    const user = await this.userRepository.findOne({
+      id: tokenElements.sub.toString(),
+    });
+
+    return user;
+  }
+
+  async findUserByEmail(email: string): Promise<User> {
+    const user = await this.userRepository.findOne({
+      email: email,
+    });
+
+    return user;
   }
 
   async changeMotivation(user: User, motivation: string): Promise<void> {
