@@ -1,4 +1,4 @@
-import nodemailer, { SentMessageInfo, Transport } from "nodemailer";
+import nodemailer from "nodemailer";
 import { IEmailProvider } from "../IEmailProvider";
 
 import handlebars from "handlebars";
@@ -17,12 +17,13 @@ class EtherealEmailProvider implements IEmailProvider {
       }
 
       let transporter = nodemailer.createTransport({
-        host: account.smtp.host,
-        port: account.smtp.port,
-        secure: account.smtp.secure,
+        service: "gmail",
+        host: "smtp.gmail.com",
+        port: 465,
+        secure: true,
         auth: {
-          user: account.user,
-          pass: account.pass,
+          user: "pedromarquesnoot@gmail.com",
+          pass: "vajnlrswufcbmgoz",
         },
       });
 
@@ -35,7 +36,7 @@ class EtherealEmailProvider implements IEmailProvider {
 
       const message = await transporter.sendMail({
         to,
-        from: "Calisthenic <calisthenictest@teste>",
+        from: "pedromarquesnoot@outlook.com",
         subject,
         html: templateHTML,
       });
@@ -43,8 +44,6 @@ class EtherealEmailProvider implements IEmailProvider {
       console.log("Message sent: %s", message);
       console.log("Preview URL: %s", nodemailer.getTestMessageUrl(message));
     });
-
-    return;
   }
 }
 
